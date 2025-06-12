@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميمات إبداعية - تحويل الأفكار إلى واقع رقمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* الضبط العام */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif; /* خط عربي بديل لـ Cocon */
+        }
+
+        body {
+            background-color: #212222;
+            color: #9d704c;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #9d704c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        /* الهيدر */
+        header {
+            padding: 20px 0;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* بانر الصورة */
+        .banner-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        /* الأقسام */
+        section {
+            padding: 80px 0;
+        }
+
+        .about-section, .achievements-section {
+            text-align: center;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        .achievements-section p {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #9d704c;
+        }
+
+        /* الخدمات */
+        .services-section {
+            background-color: #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background-color: #212222;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+            height: 500px; /* ارتفاع أكبر للبطاقات الطولية */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #9d704c;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            z-index: -1;
+            background: linear-gradient(45deg, #9d704c, #ffffff, #9d704c);
+            background-size: 200% 200%;
+            animation: glowing 3s linear infinite;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0% 50%;
+                opacity: 0.5;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 1;
+            }
+            100% {
+                background-position: 0% 50%;
+                opacity: 0.5;
+            }
+        }
+
+        .service-img {
+            height: 400px; /* ارتفاع أكبر للصور الطولية */
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+
+        .service-card h3 {
+            padding: 20px;
+            text-align: center;
+            color: #9d704c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* التواصل */
+        .contact-section {
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background-color: #212222;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background-color: #9d704c;
+            color: #ffffff;
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+        }
+
+        .contact-method span {
+            font-size: 1.1rem;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: #1a1a1a;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9d704c;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .logo img {
+                height: 50px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                height: 450px;
+            }
+
+            .service-img {
+                height: 350px;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-method {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-section {
+                height: 70vh;
+            }
+
+            .about-section p, .achievements-section p {
+                font-size: 1rem;
+            }
+
+            .service-card {
+                height: 400px;
+            }
+
+            .service-img {
+                height: 300px;
+            }
+
+            .service-card h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.imgur.com/1ouk9Wr.png" alt="لوجو الموقع">
+            </div>
+        </div>
+    </header>
+
+    <!-- بانر الصورة -->
+    <section class="banner-section">
+        <img class="banner-img" src="https://i.imgur.com/AN3hs7X.jpg" alt="بانر الموقع">
+        <div class="banner-overlay"></div>
+    </section>
+
+    <!-- قسم نبذة عني -->
+    <section class="about-section">
+        <div class="container">
+            <h2>نبذة عني</h2>
+            <p>أحوّل الأفكار إلى حضور رقمي مبهر، خبير في تصميم المواقع الإلكترونية، وتصاميم السوشيال ميديا، وتصاميم الطباعة والدعاية والإعلان. أدمج بين الجمال البصري والرسالة التسويقية بذكاء، وأصنع حملات إعلانية للسوشيال ميديا تلفت الانتباه وتحقق أهدافك.</p>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section class="services-section">
+        <div class="container">
+            <h2>الخدمات</h2>
+            <div class="services-grid">
+                <!-- خدمة 1 -->
+                <div class="service-card" onclick="window.open('https://wa.me/+966544878486', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/RAQXkHq.jpg" alt="تصميم موقع الكتروني">
+                    </div>
+                    <h3>تصميم موقع الكتروني</h3>
+                </div>
+                
+                <!-- خدمة 2 -->
+                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/jfjc/', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/yPk8zk3.jpg" alt="تصميم بروفايل">
+                    </div>
+                    <h3>تصميم بروفايل (ملف تعريفي للشركات)</h3>
+                </div>
+                
+                <!-- خدمة 3 -->
+                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/owtk/', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/RAQXkHq.jpg" alt="تصميم منيو للمطاعم">
+                    </div>
+                    <h3>تصميم منيو للمطاعم (للطباعة – الكتروني)</h3>
+                </div>
+                
+                <!-- خدمة 4 -->
+                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/ztab/', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/0CzrmTv.jpg" alt="تصاميم للسوشيال ميديا">
+                    </div>
+                    <h3>تصاميم للسوشيال ميديا</h3>
+                </div>
+                
+                <!-- خدمة 5 -->
+                <div class="service-card" onclick="window.open('https://wa.me/+966544878486', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/ucZumCJ.jpg" alt="حملات إعلانية">
+                    </div>
+                    <h3>إطلاق حملات إعلانية على منصات السوشيال ميديا</h3>
+                </div>
+                
+                <!-- خدمة 6 -->
+                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/mofi/', '_blank')">
+                    <div class="service-img">
+                        <img src="https://i.imgur.com/iRlryCk.jpg" alt="تصاميم كتالوج">
+                    </div>
+                    <h3>تصاميم كتالوج</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإنجازات -->
+    <section class="achievements-section">
+        <div class="container">
+            <p>على مدار 6 سنوات، قدمت خدماتي لأكثر من 500 عميل راضٍ، وكل مشروع كان خطوة جديدة نحو التميز والإبداع.</p>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>وسائل التواصل</h2>
+            <div class="contact-methods">
+                <div class="contact-method" onclick="window.open('tel:+966544878486', '_blank')">
+                    <i class="fas fa-phone"></i>
+                    <span>0544878486</span>
+                </div>
+                <div class="contact-method" onclick="window.open('https://wa.me/+966544878486', '_blank')">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>0544878486</span>
+                </div>
+                <div class="contact-method" onclick="window.open('mailto:abadawy570@gmail.com', '_blank')">
+                    <i class="fas fa-envelope"></i>
+                    <span>abadawy570@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // ضبط حجم الصورة لتملأ الشاشة بالكامل
+        function adjustBannerSize() {
+            const bannerImg = document.querySelector('.banner-img');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const imgRatio = bannerImg.naturalWidth / bannerImg.naturalHeight;
+            
+            if ((windowWidth / windowHeight) > imgRatio) {
+                bannerImg.style.width = '100%';
+                bannerImg.style.height = 'auto';
+            } else {
+                bannerImg.style.width = 'auto';
+                bannerImg.style.height = '100%';
+            }
+        }
+
+        // عند تحميل الصورة، نضبط حجمها
+        document.querySelector('.banner-img').onload = function() {
+            adjustBannerSize();
+        };
+
+        // ضبط حجم الصورة عند تغيير حجم النافذة
+        window.addEventListener('resize', adjustBannerSize);
+
+        // إضافة تأثير التمرير السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
