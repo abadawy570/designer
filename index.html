@@ -58,6 +58,8 @@
 
     .logo img {
       height: 50px;
+      width: auto;
+      border-radius: 5px;
     }
 
     /* أيقونة الواتساب العائمة */
@@ -152,28 +154,75 @@
       margin-bottom: 20px;
     }
 
-    /* قسم الخدمات */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+    /* قسم الخدمات - Infinite Carousel */
+    .services-carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin: 40px 0;
+      cursor: grab;
     }
 
-    .service {
+    .services-carousel-container:active {
+      cursor: grabbing;
+    }
+
+    .services-carousel {
+      display: flex;
+      animation: scroll-right 30s linear infinite;
+      width: calc(300px * 12); /* عرض كافي للتكرار */
+      transition: transform 0.3s ease;
+    }
+
+    .services-carousel:hover {
+      animation-play-state: paused;
+    }
+
+    .services-carousel.dragging {
+      animation: none;
+      transition: none;
+    }
+
+    .service-item {
+      flex: 0 0 280px;
+      margin-right: 20px;
       border: 2px solid white;
       border-radius: 15px;
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: #fff;
+      position: relative;
     }
 
-    .service:hover {
-      transform: scale(1.02);
+    .service-item:hover {
+      transform: scale(1.05);
+      border-color: #9d704c;
+      box-shadow: 0 8px 25px rgba(157, 112, 76, 0.3);
+      z-index: 10;
     }
 
-    .service img {
+    .service-item img {
       width: 100%;
       height: auto;
       display: block;
+      object-fit: contain;
+    }
+
+    @keyframes scroll-right {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Reverse Carousel - تم حذفه */
+    
+    /* إضافة تأثيرات تفاعلية */
+    .services-carousel-container:hover .services-carousel {
+      animation-play-state: paused;
     }
 
     /* قسم التواصل */
@@ -227,7 +276,7 @@
       }
       
       .logo img {
-        height: 40px !important;
+        height: 40px;
       }
 
       /* أيقونة الواتساب */
@@ -277,10 +326,18 @@
         font-size: 1rem;
       }
 
-      /* الخدمات */
-      .services {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+      /* الخدمات للجوال */
+      .service-item {
+        flex: 0 0 220px;
+        margin-right: 15px;
+      }
+      
+      .service-item img {
+        height: auto;
+      }
+
+      .services-carousel {
+        animation-duration: 35s;
       }
     }
 
@@ -298,7 +355,7 @@
       }
       
       .logo img {
-        height: 35px !important;
+        height: 35px;
       }
 
       /* أيقونة الواتساب */
@@ -336,10 +393,14 @@
         font-size: 1.5rem;
       }
 
-      /* الخدمات */
-      .services {
-        grid-template-columns: 1fr;
-        gap: 15px;
+      /* الخدمات للشاشات الصغيرة */
+      .service-item {
+        flex: 0 0 180px;
+        margin-right: 10px;
+      }
+      
+      .service-item img {
+        height: auto;
       }
 
       /* التواصل */
@@ -348,13 +409,114 @@
         font-size: 0.9rem;
       }
     }
-</style>
-<script>
-// JavaScript لضمان التشغيل التلقائي والتكرار
-document.addEventListener('DOMContentLoaded', function() {
-    const iframe = document.querySelector('.video-section iframe');
+
+    /* إضافة تأثيرات تفاعلية */
+    .services-carousel-container:hover .services-carousel {
+      animation-play-state: paused;
+    }
     
-    // إضافة معاملات التشغيل التلقائي والتكرار
+    /* تحسين الأداء */
+    .service-item {
+      will-change: transform;
+    }
+    
+    .services-carousel {
+      will-change: transform;
+    }
+</style>
+</head>
+<body>
+
+<!-- الشعار -->
+<a href="https://wa.me/+966544878486" class="logo">
+  <img src="https://imgur.com/1ouk9Wr.png" alt="بدوي للتصميم"/>
+</a>
+
+<!-- البانر -->
+<section class="video-section">
+    <iframe src="https://streamable.com/e/f3tuaq" 
+            frameborder="0" width="100%" height="100%" 
+            allow="autoplay; fullscreen" allowfullscreen>
+    </iframe>
+</section>
+
+<!-- قسم العداد -->
+<section class="counter-section">
+  <div class="counter-container">
+    <div class="counter-number" id="clientCounter">0</div>
+    <div class="counter-text">عميل</div>
+    <div class="counter-subtitle">على مدار 6 سنوات من العمل الحر</div>
+  </div>
+</section>
+
+<!-- الخدمات -->
+<section>
+<h2>الخدمات</h2>
+<div class="services-carousel-container">
+  <div class="services-carousel" id="servicesCarousel">
+    <!-- المجموعة الأولى -->
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/jfjc/">
+      <img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/owtk/">
+      <img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/ztab/">
+      <img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
+    </a>
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/mofi/">
+      <img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
+    </a>
+    <!-- تكرار المجموعة للحصول على تأثير لا نهائي -->
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/jfjc/">
+      <img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/owtk/">
+      <img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/ztab/">
+      <img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
+    </a>
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/mofi/">
+      <img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- وسائل التواصل -->
+<section>
+<h2>وسائل التواصل</h2>
+<div class="contact">
+<a href="tel:+966544878486">📱 الجوال: 0544878486</a>
+<a href="https://wa.me/+966544878486">💬 واتساب: 0544878486</a>
+<a href="mailto:abadawy570@gmail.com">📧 الإيميل: abadawy570@gmail.com</a>
+</div>
+</section>
+
+<!-- أيقونة الواتساب العائمة -->
+<a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+  </svg>
+</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // إعداد الفيديو
+    const iframe = document.querySelector('.video-section iframe');
     if (iframe) {
         const currentSrc = iframe.src;
         if (!currentSrc.includes('autoplay')) {
@@ -362,7 +524,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // محاولة إعادة تحميل iframe في حالة عدم التحميل
     setTimeout(function() {
         if (iframe && iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
             iframe.src = iframe.src;
@@ -403,73 +564,94 @@ document.addEventListener('DOMContentLoaded', function() {
     if (counterSection) {
         observer.observe(counterSection);
     }
+
+    // إيقاف الحركة عند الوقوف على الخدمات واضافة التحكم بالماوس والسحب
+    const carouselContainer = document.querySelector('.services-carousel-container');
+    const carousel = document.getElementById('servicesCarousel');
+    
+    if (carouselContainer && carousel) {
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationId = 0;
+        
+        // Mouse events
+        carouselContainer.addEventListener('mousedown', dragStart);
+        carouselContainer.addEventListener('mousemove', dragMove);
+        carouselContainer.addEventListener('mouseup', dragEnd);
+        carouselContainer.addEventListener('mouseleave', dragEnd);
+        
+        // Touch events
+        carouselContainer.addEventListener('touchstart', dragStart, { passive: false });
+        carouselContainer.addEventListener('touchmove', dragMove, { passive: false });
+        carouselContainer.addEventListener('touchend', dragEnd);
+        
+        // Hover events
+        carouselContainer.addEventListener('mouseenter', () => {
+            carousel.style.animationPlayState = 'paused';
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            if (!isDragging) {
+                carousel.style.animationPlayState = 'running';
+            }
+        });
+        
+        function dragStart(e) {
+            isDragging = true;
+            carousel.classList.add('dragging');
+            carousel.style.animationPlayState = 'paused';
+            
+            startX = getPositionX(e);
+            prevTranslate = getCurrentTranslate();
+            
+            cancelAnimationFrame(animationId);
+            carouselContainer.style.cursor = 'grabbing';
+        }
+        
+        function dragMove(e) {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            const currentPosition = getPositionX(e);
+            const diff = currentPosition - startX;
+            currentTranslate = prevTranslate + diff;
+            
+            setTranslate();
+        }
+        
+        function dragEnd() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            carousel.classList.remove('dragging');
+            carouselContainer.style.cursor = 'grab';
+            
+            // العودة للحركة التلقائية بعد التوقف
+            setTimeout(() => {
+                carousel.style.animationPlayState = 'running';
+            }, 1000);
+        }
+        
+        function getPositionX(e) {
+            return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        }
+        
+        function getCurrentTranslate() {
+            const transform = carousel.style.transform;
+            if (transform && transform.includes('translateX')) {
+                const match = transform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+                return match ? parseFloat(match[1]) : 0;
+            }
+            return 0;
+        }
+        
+        function setTranslate() {
+            carousel.style.transform = `translateX(${currentTranslate}px)`;
+        }
+    }
 });
 </script>
-</head>
-<body>
-<!-- الشعار -->
-<a href="https://imgur.com/1ouk9Wr" class="logo">
-<img alt="Logo" src="https://imgur.com/1ouk9Wr.png"/>
-</a>
-
-<!-- البانر -->
-<section class="video-section">
-    <iframe src="https://streamable.com/e/f3tuaq" 
-            frameborder="0" width="100%" height="100%" 
-            allow="autoplay; fullscreen" allowfullscreen>
-    </iframe>
-</section>
-
-<!-- قسم العداد -->
-<section class="counter-section">
-  <div class="counter-container">
-    <div class="counter-number" id="clientCounter">0</div>
-    <div class="counter-text">عميل</div>
-    <div class="counter-subtitle">على مدار 6 سنوات من العمل الحر</div>
-  </div>
-</section>
-
-<!-- الخدمات -->
-<section>
-<h2>الخدمات</h2>
-<div class="services">
-<a class="service" href="https://wa.me/+966544878486">
-<img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
-</a>
-<a class="service" href="https://online.fliphtml5.com/uhmfw/jfjc/">
-<img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
-</a>
-<a class="service" href="https://online.fliphtml5.com/uhmfw/owtk/">
-<img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
-</a>
-<a class="service" href="https://online.fliphtml5.com/uhmfw/ztab/">
-<img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
-</a>
-<a class="service" href="https://wa.me/+966544878486">
-<img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
-</a>
-<a class="service" href="https://online.fliphtml5.com/uhmfw/mofi/">
-<img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
-</a>
-</div>
-</section>
-
-<!-- وسائل التواصل -->
-<section>
-<h2>وسائل التواصل</h2>
-<div class="contact">
-<a href="tel:+966544878486">📱 الجوال: 0544878486</a>
-<a href="https://wa.me/+966544878486">💬 واتساب: 0544878486</a>
-<a href="mailto:abadawy570@gmail.com">📧 الإيميل: abadawy570@gmail.com</a>
-</div>
-</section>
-
-<!-- أيقونة الواتساب العائمة -->
-<a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
-  <svg viewBox="0 0 24 24">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
-  </svg>
-</a>
 </body>
 </html>
-
