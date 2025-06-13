@@ -101,9 +101,43 @@
       background-color: #b3825e;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
       .services {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      section {
+        padding: 40px 15px;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      section {
+        padding: 30px 10px;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      .contact a {
+        padding: 10px 15px;
+        font-size: 0.9rem;
       }
     }
 
@@ -137,6 +171,25 @@
       min-width: 177.78vh; /* 16:9 aspect ratio */
       transform: translate(-50%, -50%);
       border: none;
+    }
+
+    /* تحسينات الفيديو للجوال */
+    @media (max-width: 768px) {
+      .video-section {
+        height: 60vh; /* ارتفاع أقل على الجوال */
+        width: 100vw;
+      }
+      
+      .video-section iframe {
+        width: 100%;
+        height: 100%;
+        min-height: auto;
+        min-width: auto;
+        top: 0;
+        left: 0;
+        transform: none;
+        object-fit: cover;
+      }
     }
 
     /* تأكد من أن الشعار يظهر فوق الفيديو */
@@ -177,6 +230,54 @@
       width: 35px;
       height: 35px;
       fill: white;
+    }
+
+    /* تحسينات للجوال */
+    @media (max-width: 768px) {
+      .logo {
+        top: 15px;
+        right: 15px;
+        padding: 3px;
+      }
+      
+      .logo img {
+        height: 40px !important;
+      }
+      
+      .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+      }
+      
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .logo img {
+        height: 35px !important;
+      }
+      
+      .whatsapp-float {
+        bottom: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
     }
 
     @keyframes pulse {
@@ -221,6 +322,42 @@
       font-size: 1.2rem;
       color: #ccc;
       font-style: italic;
+    }
+
+    /* تحسينات العداد للجوال */
+    @media (max-width: 768px) {
+      .counter-section {
+        padding: 40px 15px;
+      }
+      
+      .counter-number {
+        font-size: 2.5rem; /* حجم أصغر للجوال */
+        margin-bottom: 8px;
+      }
+      
+      .counter-text {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+      
+      .counter-subtitle {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .counter-number {
+        font-size: 2rem; /* حجم أصغر للشاشات الصغيرة جداً */
+      }
+      
+      .counter-text {
+        font-size: 1.1rem;
+      }
+      
+      .counter-subtitle {
+        font-size: 0.9rem;
+      }
     }
 </style>
 <script>
