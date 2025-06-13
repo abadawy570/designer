@@ -1,451 +1,343 @@
+
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تصميمات إبداعية - تحويل الأفكار إلى واقع رقمي</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* الضبط العام */
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>بدوي للتصميم</title>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    body {
+      background-color: #212222;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      width: 100vw;
+      height: 60vh;
+      background: url('https://i.imgur.com/AN3hs7X.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #9d704c;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .services {
+      display: grid;
+      gap: 30px;
+    }
+
+    .service {
+      border: 2px solid white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.02);
+    }
+
+    .service img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #9d704c;
+      color: #212222;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .contact a:hover {
+      background-color: #b3825e;
+    }
+
+    @media (min-width: 768px) {
+      .services {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .services {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .contact {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* تحسينات الفيديو */
+    .video-section {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+
+    .video-section iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw; /* 16:9 aspect ratio */
+      min-height: 100vh;
+      min-width: 177.78vh; /* 16:9 aspect ratio */
+      transform: translate(-50%, -50%);
+      border: none;
+    }
+
+    /* تأكد من أن الشعار يظهر فوق الفيديو */
+    .logo {
+      position: fixed !important;
+      top: 20px;
+      right: 20px;
+      z-index: 9999 !important;
+      background: rgba(0,0,0,0.5);
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    /* أيقونة الواتساب العائمة */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .whatsapp-float svg {
+      width: 35px;
+      height: 35px;
+      fill: white;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* قسم العداد */
+    .counter-section {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #212222 0%, #2a2b2b 100%);
+    }
+
+    .counter-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .counter-number {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #9d704c;
+      margin-bottom: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .counter-text {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .counter-subtitle {
+      font-size: 1.2rem;
+      color: #ccc;
+      font-style: italic;
+    }
+</style>
+<script>
+// JavaScript لضمان التشغيل التلقائي والتكرار
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('.video-section iframe');
+    
+    // إضافة معاملات التشغيل التلقائي والتكرار
+    if (iframe) {
+        const currentSrc = iframe.src;
+        if (!currentSrc.includes('autoplay')) {
+            iframe.src = currentSrc + '?autoplay=1&loop=1&muted=1';
+        }
+    }
+    
+    // محاولة إعادة تحميل iframe في حالة عدم التحميل
+    setTimeout(function() {
+        if (iframe && iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
+            iframe.src = iframe.src;
+        }
+    }, 3000);
+    
+    // عداد العملاء
+    function animateCounter() {
+        const counter = document.getElementById('clientCounter');
+        if (!counter) return;
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif; /* خط عربي بديل لـ Cocon */
-        }
-
-        body {
-            background-color: #212222;
-            color: #9d704c;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h1, h2, h3 {
-            color: #9d704c;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        /* الهيدر */
-        header {
-            padding: 20px 0;
-            position: absolute;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-
-        /* بانر الصورة */
-        .banner-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .banner-img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: 1;
-            object-fit: cover;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 2;
-        }
-
-        /* الأقسام */
-        section {
-            padding: 80px 0;
-        }
-
-        .about-section, .achievements-section {
-            text-align: center;
-        }
-
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-        }
-
-        .achievements-section p {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #9d704c;
-        }
-
-        /* الخدمات */
-        .services-section {
-            background-color: #1a1a1a;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background-color: #212222;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            border: 2px solid transparent;
-            height: 500px; /* ارتفاع أكبر للبطاقات الطولية */
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #9d704c;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            z-index: -1;
-            background: linear-gradient(45deg, #9d704c, #ffffff, #9d704c);
-            background-size: 200% 200%;
-            animation: glowing 3s linear infinite;
-        }
-
-        @keyframes glowing {
-            0% {
-                background-position: 0% 50%;
-                opacity: 0.5;
-            }
-            50% {
-                background-position: 100% 50%;
-                opacity: 1;
-            }
-            100% {
-                background-position: 0% 50%;
-                opacity: 0.5;
-            }
-        }
-
-        .service-img {
-            height: 400px; /* ارتفاع أكبر للصور الطولية */
-            overflow: hidden;
-        }
-
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-img img {
-            transform: scale(1.05);
-        }
-
-        .service-card h3 {
-            padding: 20px;
-            text-align: center;
-            color: #9d704c;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* التواصل */
-        .contact-section {
-            background-color: #1a1a1a;
-            text-align: center;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background-color: #212222;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .contact-method:hover {
-            background-color: #9d704c;
-            color: #ffffff;
-        }
-
-        .contact-method i {
-            font-size: 1.5rem;
-        }
-
-        .contact-method span {
-            font-size: 1.1rem;
-        }
-
-        /* الفوتر */
-        footer {
-            background-color: #1a1a1a;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        footer p {
-            color: #9d704c;
-        }
-
-        /* التكيف مع الشاشات الصغيرة */
-        @media (max-width: 768px) {
-            .logo img {
-                height: 50px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card {
-                height: 450px;
-            }
-
-            .service-img {
-                height: 350px;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-method {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .banner-section {
-                height: 70vh;
-            }
-
-            .about-section p, .achievements-section p {
-                font-size: 1rem;
-            }
-
-            .service-card {
-                height: 400px;
-            }
-
-            .service-img {
-                height: 300px;
-            }
-
-            .service-card h3 {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- شريط التنقل -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="https://i.imgur.com/1ouk9Wr.png" alt="لوجو الموقع">
-            </div>
-        </div>
-    </header>
-
-    <!-- بانر الصورة -->
-    <section class="banner-section">
-        <img class="banner-img" src="https://i.imgur.com/AN3hs7X.jpg" alt="بانر الموقع">
-        <div class="banner-overlay"></div>
-    </section>
-
-    <!-- قسم نبذة عني -->
-    <section class="about-section">
-        <div class="container">
-            <h2>نبذة عني</h2>
-            <p>أحوّل الأفكار إلى حضور رقمي مبهر، خبير في تصميم المواقع الإلكترونية، وتصاميم السوشيال ميديا، وتصاميم الطباعة والدعاية والإعلان. أدمج بين الجمال البصري والرسالة التسويقية بذكاء، وأصنع حملات إعلانية للسوشيال ميديا تلفت الانتباه وتحقق أهدافك.</p>
-        </div>
-    </section>
-
-    <!-- قسم الخدمات -->
-    <section class="services-section">
-        <div class="container">
-            <h2>الخدمات</h2>
-            <div class="services-grid">
-                <!-- خدمة 1 -->
-                <div class="service-card" onclick="window.open('https://wa.me/+966544878486', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/RAQXkHq.jpg" alt="تصميم موقع الكتروني">
-                    </div>
-                    <h3>تصميم موقع الكتروني</h3>
-                </div>
-                
-                <!-- خدمة 2 -->
-                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/jfjc/', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/yPk8zk3.jpg" alt="تصميم بروفايل">
-                    </div>
-                    <h3>تصميم بروفايل (ملف تعريفي للشركات)</h3>
-                </div>
-                
-                <!-- خدمة 3 -->
-                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/owtk/', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/RAQXkHq.jpg" alt="تصميم منيو للمطاعم">
-                    </div>
-                    <h3>تصميم منيو للمطاعم (للطباعة – الكتروني)</h3>
-                </div>
-                
-                <!-- خدمة 4 -->
-                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/ztab/', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/0CzrmTv.jpg" alt="تصاميم للسوشيال ميديا">
-                    </div>
-                    <h3>تصاميم للسوشيال ميديا</h3>
-                </div>
-                
-                <!-- خدمة 5 -->
-                <div class="service-card" onclick="window.open('https://wa.me/+966544878486', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/ucZumCJ.jpg" alt="حملات إعلانية">
-                    </div>
-                    <h3>إطلاق حملات إعلانية على منصات السوشيال ميديا</h3>
-                </div>
-                
-                <!-- خدمة 6 -->
-                <div class="service-card" onclick="window.open('https://online.fliphtml5.com/uhmfw/mofi/', '_blank')">
-                    <div class="service-img">
-                        <img src="https://i.imgur.com/iRlryCk.jpg" alt="تصاميم كتالوج">
-                    </div>
-                    <h3>تصاميم كتالوج</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم الإنجازات -->
-    <section class="achievements-section">
-        <div class="container">
-            <p>على مدار 6 سنوات، قدمت خدماتي لأكثر من 500 عميل راضٍ، وكل مشروع كان خطوة جديدة نحو التميز والإبداع.</p>
-        </div>
-    </section>
-
-    <!-- قسم التواصل -->
-    <section class="contact-section">
-        <div class="container">
-            <h2>وسائل التواصل</h2>
-            <div class="contact-methods">
-                <div class="contact-method" onclick="window.open('tel:+966544878486', '_blank')">
-                    <i class="fas fa-phone"></i>
-                    <span>0544878486</span>
-                </div>
-                <div class="contact-method" onclick="window.open('https://wa.me/+966544878486', '_blank')">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>0544878486</span>
-                </div>
-                <div class="contact-method" onclick="window.open('mailto:abadawy570@gmail.com', '_blank')">
-                    <i class="fas fa-envelope"></i>
-                    <span>abadawy570@gmail.com</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- الفوتر -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 جميع الحقوق محفوظة</p>
-        </div>
-    </footer>
-
-    <script>
-        // ضبط حجم الصورة لتملأ الشاشة بالكامل
-        function adjustBannerSize() {
-            const bannerImg = document.querySelector('.banner-img');
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
-            const imgRatio = bannerImg.naturalWidth / bannerImg.naturalHeight;
-            
-            if ((windowWidth / windowHeight) > imgRatio) {
-                bannerImg.style.width = '100%';
-                bannerImg.style.height = 'auto';
+        let count = 0;
+        const target = 500;
+        const increment = target / 100; // سرعة العداد
+        
+        const timer = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+                counter.textContent = target + '+';
+                clearInterval(timer);
             } else {
-                bannerImg.style.width = 'auto';
-                bannerImg.style.height = '100%';
+                counter.textContent = Math.floor(count);
             }
-        }
-
-        // عند تحميل الصورة، نضبط حجمها
-        document.querySelector('.banner-img').onload = function() {
-            adjustBannerSize();
-        };
-
-        // ضبط حجم الصورة عند تغيير حجم النافذة
-        window.addEventListener('resize', adjustBannerSize);
-
-        // إضافة تأثير التمرير السلس
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        }, 30);
+    }
+    
+    // تشغيل العداد عند ظهور القسم
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                observer.unobserve(entry.target);
+            }
         });
-    </script>
+    });
+    
+    const counterSection = document.querySelector('.counter-section');
+    if (counterSection) {
+        observer.observe(counterSection);
+    }
+});
+</script></head>
+<body>
+<!-- الشعار -->
+<a href="https://imgur.com/1ouk9Wr" class="logo">
+<img alt="Logo" src="https://imgur.com/1ouk9Wr.png" style="height: 50px;"/>
+</a>
+<!-- البانر -->
+<section class="video-section">
+    <iframe src="https://streamable.com/e/f3tuaq" 
+            frameborder="0" width="100%" height="100%" 
+            allow="autoplay; fullscreen" allowfullscreen>
+    </iframe>
+</section>
+<!-- قسم العداد -->
+<section class="counter-section">
+  <div class="counter-container">
+    <div class="counter-number" id="clientCounter">0</div>
+    <div class="counter-text">عميل</div>
+    <div class="counter-subtitle">على مدار 6 سنوات من العمل الحر</div>
+  </div>
+</section>
+<!-- الخدمات -->
+<section>
+<h2>الخدمات</h2>
+<div class="services">
+<a class="service" href="https://wa.me/+966544878486">
+<img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/jfjc/">
+<img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/owtk/">
+<img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/ztab/">
+<img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
+</a>
+<a class="service" href="https://wa.me/+966544878486">
+<img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/mofi/">
+<img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
+</a>
+</div>
+</section>
+<!-- وسائل التواصل -->
+<section>
+<h2>وسائل التواصل</h2>
+<div class="contact">
+<a href="tel:+966544878486">📱 الجوال: 0544878486</a>
+<a href="https://wa.me/+966544878486">💬 واتساب: 0544878486</a>
+<a href="mailto:abadawy570@gmail.com">📧 الإيميل: abadawy570@gmail.com</a>
+</div>
+</section>
+
+<!-- أيقونة الواتساب العائمة -->
+<a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+  </svg>
+</a>
 </body>
 </html>
-
