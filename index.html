@@ -154,33 +154,38 @@
       margin-bottom: 20px;
     }
 
-    /* قسم الخدمات - Infinite Carousel */
+    /* قسم الخدمات - Infinite Carousel محسن */
     .services-carousel-container {
       position: relative;
       overflow: hidden;
       width: 100%;
       margin: 40px 0;
       cursor: grab;
+      user-select: none;
     }
 
     .services-carousel-container:active {
       cursor: grabbing;
     }
 
-    .services-carousel {
-      display: flex;
-      animation: scroll-right 30s linear infinite;
-      width: calc(300px * 12); /* عرض كافي للتكرار */
-      transition: transform 0.3s ease;
+    .services-carousel-container.dragging {
+      cursor: grabbing !important;
     }
 
-    .services-carousel:hover {
-      animation-play-state: paused;
+    .services-carousel {
+      display: flex;
+      width: calc(300px * 18); /* زيادة العرض للحلقة اللانهائية */
+      transition: none;
+      will-change: transform;
+    }
+
+    .services-carousel.auto-scroll {
+      animation: scroll-right 40s linear infinite;
     }
 
     .services-carousel.dragging {
-      animation: none;
-      transition: none;
+      animation: none !important;
+      transition: none !important;
     }
 
     .service-item {
@@ -190,9 +195,10 @@
       border-radius: 15px;
       overflow: hidden;
       transition: all 0.3s ease;
-      cursor: pointer;
+      cursor: grab !important;
       background: #fff;
-      position: relative;
+      position: relative; /* Crucial for z-index to work on hover */
+      pointer-events: auto;
     }
 
     .service-item:hover {
@@ -200,6 +206,11 @@
       border-color: #9d704c;
       box-shadow: 0 8px 25px rgba(157, 112, 76, 0.3);
       z-index: 10;
+      cursor: grab !important;
+    }
+
+    .service-item:active {
+      cursor: grabbing !important;
     }
 
     .service-item img {
@@ -207,6 +218,16 @@
       height: auto;
       display: block;
       object-fit: contain;
+      pointer-events: none; /* Prevent individual image dragging */
+    }
+
+    /* منع الانتقال للروابط أثناء السحب (controlled by JS click listener) */
+    .service-item.no-click {
+      /* pointer-events: none; This class is now handled by more precise JS logic */
+    }
+
+    .service-item.no-click * {
+      /* pointer-events: none; */
     }
 
     @keyframes scroll-right {
@@ -214,15 +235,8 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-50%);
+        transform: translateX(calc(-300px * 6)); /* التحرك بمقدار 6 عناصر */
       }
-    }
-
-    /* Reverse Carousel - تم حذفه */
-    
-    /* إضافة تأثيرات تفاعلية */
-    .services-carousel-container:hover .services-carousel {
-      animation-play-state: paused;
     }
 
     /* قسم التواصل */
@@ -336,8 +350,8 @@
         height: auto;
       }
 
-      .services-carousel {
-        animation-duration: 35s;
+      .services-carousel.auto-scroll {
+        animation-duration: 45s;
       }
     }
 
@@ -409,30 +423,14 @@
         font-size: 0.9rem;
       }
     }
-
-    /* إضافة تأثيرات تفاعلية */
-    .services-carousel-container:hover .services-carousel {
-      animation-play-state: paused;
-    }
-    
-    /* تحسين الأداء */
-    .service-item {
-      will-change: transform;
-    }
-    
-    .services-carousel {
-      will-change: transform;
-    }
 </style>
 </head>
 <body>
 
-<!-- الشعار -->
 <a href="https://wa.me/+966544878486" class="logo">
   <img src="https://imgur.com/1ouk9Wr.png" alt="بدوي للتصميم"/>
 </a>
 
-<!-- البانر -->
 <section class="video-section">
     <iframe src="https://streamable.com/e/f3tuaq" 
             frameborder="0" width="100%" height="100%" 
@@ -440,7 +438,6 @@
     </iframe>
 </section>
 
-<!-- قسم العداد -->
 <section class="counter-section">
   <div class="counter-container">
     <div class="counter-number" id="clientCounter">0</div>
@@ -449,12 +446,10 @@
   </div>
 </section>
 
-<!-- الخدمات -->
 <section>
 <h2>الخدمات</h2>
 <div class="services-carousel-container">
-  <div class="services-carousel" id="servicesCarousel">
-    <!-- المجموعة الأولى -->
+  <div class="services-carousel auto-scroll" id="servicesCarousel">
     <a class="service-item" href="https://wa.me/+966544878486">
       <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
     </a>
@@ -473,7 +468,24 @@
     <a class="service-item" href="https://online.fliphtml5.com/uhmfw/mofi/">
       <img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
     </a>
-    <!-- تكرار المجموعة للحصول على تأثير لا نهائي -->
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/jfjc/">
+      <img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/owtk/">
+      <img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/ztab/">
+      <img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
+    </a>
+    <a class="service-item" href="https://wa.me/+966544878486">
+      <img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
+    </a>
+    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/mofi/">
+      <img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
+    </a>
     <a class="service-item" href="https://wa.me/+966544878486">
       <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
     </a>
@@ -496,7 +508,6 @@
 </div>
 </section>
 
-<!-- وسائل التواصل -->
 <section>
 <h2>وسائل التواصل</h2>
 <div class="contact">
@@ -506,7 +517,6 @@
 </div>
 </section>
 
-<!-- أيقونة الواتساب العائمة -->
 <a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
   <svg viewBox="0 0 24 24">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
@@ -519,16 +529,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframe = document.querySelector('.video-section iframe');
     if (iframe) {
         const currentSrc = iframe.src;
+        // Ensure autoplay, loop, and muted are set for background video
         if (!currentSrc.includes('autoplay')) {
             iframe.src = currentSrc + '?autoplay=1&loop=1&muted=1';
         }
+        // Fallback to reload if iframe content is empty after some time
+        setTimeout(function() {
+            if (iframe && iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.innerHTML === '') {
+                iframe.src = iframe.src;
+            }
+        }, 3000);
     }
-    
-    setTimeout(function() {
-        if (iframe && iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
-            iframe.src = iframe.src;
-        }
-    }, 3000);
     
     // عداد العملاء
     function animateCounter() {
@@ -565,91 +576,177 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(counterSection);
     }
 
-    // إيقاف الحركة عند الوقوف على الخدمات واضافة التحكم بالماوس والسحب
+    // نظام السحب والتحكم بالخدمات المحسن مع الحلقة اللانهائية
     const carouselContainer = document.querySelector('.services-carousel-container');
     const carousel = document.getElementById('servicesCarousel');
     
     if (carouselContainer && carousel) {
         let isDragging = false;
+        let hasDragged = false;
         let startX = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationId = 0;
+        let currentX = 0;
+        let initialTransform = 0;
+        let dragOffset = 0;
+        const clickThreshold = 10; // حد الحساسية للنقر - Increased slightly for better click vs drag differentiation
         
-        // Mouse events
-        carouselContainer.addEventListener('mousedown', dragStart);
-        carouselContainer.addEventListener('mousemove', dragMove);
-        carouselContainer.addEventListener('mouseup', dragEnd);
-        carouselContainer.addEventListener('mouseleave', dragEnd);
-        
-        // Touch events
-        carouselContainer.addEventListener('touchstart', dragStart, { passive: false });
-        carouselContainer.addEventListener('touchmove', dragMove, { passive: false });
-        carouselContainer.addEventListener('touchend', dragEnd);
-        
-        // Hover events
-        carouselContainer.addEventListener('mouseenter', () => {
-            carousel.style.animationPlayState = 'paused';
+        // منع السحب على الصور والسماح لسحب الوالد
+        const images = carousel.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+            img.style.pointerEvents = 'none'; // Crucial for smoother dragging
         });
         
-        carouselContainer.addEventListener('mouseleave', () => {
-            if (!isDragging) {
-                carousel.style.animationPlayState = 'running';
+        // أحداث الماوس
+        carouselContainer.addEventListener('mousedown', handleStart);
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', handleEnd);
+        
+        // أحداث اللمس
+        carouselContainer.addEventListener('touchstart', handleStart, { passive: false });
+        document.addEventListener('touchmove', handleMove, { passive: false });
+        document.addEventListener('touchend', handleEnd);
+        
+        // أحداث الهوفر
+        carouselContainer.addEventListener('mouseenter', pauseAnimation);
+        carouselContainer.addEventListener('mouseleave', resumeAnimation);
+        
+        // منع النقر على الروابط أثناء السحب (أصبح أكثر ذكاءً)
+        carousel.addEventListener('click', function(e) {
+            // Only prevent click if a significant drag has occurred
+            if (hasDragged && Math.abs(dragOffset) > clickThreshold) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
             }
-        });
+            // Reset hasDragged after a potential click to ensure next click works
+            hasDragged = false; 
+        }, true); // Use capture phase to ensure it runs before link's default action
         
-        function dragStart(e) {
+        function handleStart(e) {
             isDragging = true;
+            hasDragged = false; // Reset hasDragged at the start of a new drag
+            
+            startX = getEventX(e);
+            initialTransform = getCurrentTransform();
+            dragOffset = 0;
+            
+            pauseAnimation(); // Immediately pause auto-scroll
             carousel.classList.add('dragging');
-            carousel.style.animationPlayState = 'paused';
+            carouselContainer.classList.add('dragging');
             
-            startX = getPositionX(e);
-            prevTranslate = getCurrentTranslate();
-            
-            cancelAnimationFrame(animationId);
-            carouselContainer.style.cursor = 'grabbing';
+            // No need to add/remove 'no-click' class dynamically if click listener is smart
         }
         
-        function dragMove(e) {
+        function handleMove(e) {
             if (!isDragging) return;
             
             e.preventDefault();
-            const currentPosition = getPositionX(e);
-            const diff = currentPosition - startX;
-            currentTranslate = prevTranslate + diff;
+            currentX = getEventX(e);
+            dragOffset = currentX - startX;
             
-            setTranslate();
+            // إذا تحرك المستخدم أكثر من الحد المسموح، اعتبره سحب
+            if (Math.abs(dragOffset) > clickThreshold) {
+                hasDragged = true; 
+            }
+            
+            let newTransform = initialTransform + dragOffset;
+            
+            const itemWidth = 300; 
+            const uniqueItems = 6; // عدد الخدمات الفريدة
+            const totalClonedItems = 18; // العدد الإجمالي للعناصر في HTML (3 مجموعات من 6)
+            const totalCarouselWidth = itemWidth * totalClonedItems;
+            const loopThreshold = itemWidth * uniqueItems; // العرض الفعلي لمجموعة واحدة كاملة من العناصر الفريدة
+
+            // حساب الحلقة اللانهائية للمستخدم
+            // عند السحب لليسار (newTransform يصبح أكثر سلبية)
+            if (newTransform < -totalCarouselWidth + loopThreshold) {
+                initialTransform += loopThreshold;
+                newTransform += loopThreshold;
+                carousel.style.transition = 'none'; // إزالة الانتقال مؤقتًا للقفز الفوري
+            } 
+            // عند السحب لليمين (newTransform يصبح إيجابيًا)
+            else if (newTransform > loopThreshold) {
+                initialTransform -= loopThreshold;
+                newTransform -= loopThreshold;
+                carousel.style.transition = 'none'; // إزالة الانتقال مؤقتًا للقفز الفوري
+            } else {
+                carousel.style.transition = 'none'; // التأكد من عدم وجود انتقال أثناء السحب
+            }
+            
+            carousel.style.transform = `translateX(${newTransform}px)`;
         }
         
-        function dragEnd() {
+        function handleEnd(e) {
             if (!isDragging) return;
             
             isDragging = false;
             carousel.classList.remove('dragging');
-            carouselContainer.style.cursor = 'grab';
+            carouselContainer.classList.remove('dragging');
             
-            // العودة للحركة التلقائية بعد التوقف
+            // إعادة تفعيل الانتقال بعد السحب
+            carousel.style.transition = 'transform 0.3s ease-out'; 
+            
+            // العودة إلى أقرب نقطة "نظيفة" ضمن نطاق المجموعة الفريدة
+            const itemWidth = 300;
+            const uniqueItems = 6;
+            const loopThreshold = itemWidth * uniqueItems;
+
+            let currentTransform = getCurrentTransform();
+            // تطبيع التحويل الحالي ليكون ضمن نطاق مجموعة واحدة من العناصر الفريدة
+            let normalizedTransform = currentTransform % loopThreshold;
+            if (normalizedTransform > 0) { // إذا كانت إيجابية، انقل إلى النطاق السلبي
+                normalizedTransform -= loopThreshold;
+            }
+
+            const nearestSnapPoint = Math.round(normalizedTransform / itemWidth) * itemWidth;
+
+            carousel.style.transform = `translateX(${nearestSnapPoint}px)`;
+
+            // إعادة تعيين hasDragged بعد تأخير قصير وتفعيل التمرير التلقائي
             setTimeout(() => {
-                carousel.style.animationPlayState = 'running';
-            }, 1000);
+                hasDragged = false;
+                resumeAnimation(); // استئناف الحركة التلقائية بعد العودة
+                carousel.style.transition = 'none'; // إزالة الانتقال للسحب التالي
+            }, 300); // إتاحة الوقت لإكمال الرسوم المتحركة للالتقاط
         }
         
-        function getPositionX(e) {
+        function getEventX(e) {
             return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
         }
         
-        function getCurrentTranslate() {
-            const transform = carousel.style.transform;
-            if (transform && transform.includes('translateX')) {
-                const match = transform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
-                return match ? parseFloat(match[1]) : 0;
+        function getCurrentTransform() {
+            const transform = window.getComputedStyle(carousel).transform;
+            if (transform === 'none') return 0;
+            
+            const matrix = transform.match(/matrix.*\((.+)\)/);
+            if (matrix) {
+                const values = matrix[1].split(', ');
+                return parseFloat(values[4]) || 0;
             }
             return 0;
         }
         
-        function setTranslate() {
-            carousel.style.transform = `translateX(${currentTranslate}px)`;
+        function pauseAnimation() {
+            carousel.classList.remove('auto-scroll');
         }
+        
+        function resumeAnimation() {
+            if (!isDragging) { // استئناف فقط إذا لم يتم السحب حاليًا
+                carousel.classList.add('auto-scroll');
+            }
+        }
+        
+        // منع التحديد النصي أثناء السحب
+        carouselContainer.addEventListener('selectstart', e => {
+            if (isDragging) e.preventDefault();
+        });
+        
+        // إضافة دعم إضافي للأجهزة اللوحية
+        carouselContainer.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     }
 });
 </script>
