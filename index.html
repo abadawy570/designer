@@ -1,14 +1,11 @@
 <!DOCTYPE html>
+
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>بدوي للتصميم</title>
 <style>
-    /* الخطوط */
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
-    /* إعادة تعيين الأساسيات */
     * {
       margin: 0;
       padding: 0;
@@ -20,7 +17,6 @@
       background-color: #212222;
       color: #fff;
       line-height: 1.6;
-      overflow-x: hidden; /* للحفاظ على شريط التمرير الأفقي فقط عند الضرورة */
     }
 
     a {
@@ -28,7 +24,83 @@
       text-decoration: none;
     }
 
-    /* قسم الفيديو */
+    header {
+      width: 100vw;
+      height: 60vh;
+      background: url('https://i.imgur.com/AN3hs7X.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #9d704c;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .services {
+      display: grid;
+      gap: 30px;
+    }
+
+    .service {
+      border: 2px solid white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.02);
+    }
+
+    .service img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #9d704c;
+      color: #212222;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .contact a:hover {
+      background-color: #b3825e;
+    }
+
+    /* تحسينات الفيديو - محسنة للجوال */
     .video-section {
       width: 100vw;
       height: 100vh;
@@ -39,40 +111,53 @@
 
     .video-section iframe {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 56.25vw; /* نسبة 16:9 للعرض */
-      min-height: 100vh;
-      min-width: 177.78vh; /* نسبة 16:9 للارتفاع */
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: none;
     }
 
-    /* الشعار */
-    .logo {
-      position: fixed !important;
-      top: 20px;
-      right: 20px;
-      z-index: 9999 !important;
-      background: rgba(0,0,0,0.5);
-      border-radius: 10px;
-      padding: 5px;
+    /* قسم العداد - محسن للجوال */
+    .counter-section {
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #212222 0%, #2a2b2b 100%);
     }
 
-    .logo img {
-      height: 50px;
-      width: auto;
-      border-radius: 5px;
+    .counter-container {
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* أيقونة الواتساب العائمة */
+    .counter-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #9d704c;
+      margin-bottom: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .counter-text {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .counter-subtitle {
+      font-size: 1rem;
+      color: #ccc;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* أيقونة الواتساب العائمة - محسنة للجوال */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
+      left: 20px; /* غيرت من right إلى left عشان يكون أوضح في RTL */
+      width: 50px;
+      height: 50px;
       background-color: #25d366;
       border-radius: 50%;
       display: flex;
@@ -90,9 +175,24 @@
     }
 
     .whatsapp-float svg {
-      width: 35px;
-      height: 35px;
+      width: 28px;
+      height: 28px;
       fill: white;
+    }
+
+    /* الشعار - محسن للجوال */
+    .logo {
+      position: fixed !important;
+      top: 15px;
+      right: 15px;
+      z-index: 9999 !important;
+      background: rgba(0,0,0,0.5);
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .logo img {
+      height: 40px !important;
     }
 
     @keyframes pulse {
@@ -107,176 +207,38 @@
       }
     }
 
-    /* قسم العداد */
-    .counter-section {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #212222 0%, #2a2b2b 100%);
-    }
-
-    .counter-container {
-      max-width: 800px; /* زيادة العرض لاستيعاب النص في سطر واحد */
-      margin: 0 auto;
-    }
-
-    .counter-text-wrapper {
-      font-size: 2rem; /* حجم أكبر للنص كاملاً */
-      font-weight: bold;
-      color: #9d704c;
-      margin-bottom: 20px;
-      font-family: 'Arial', sans-serif;
-      white-space: nowrap; /* إجبار النص على البقاء في سطر واحد */
-      overflow: hidden; /* إخفاء أي جزء يخرج عن الحدود */
-      text-overflow: ellipsis; /* إضافة نقاط إذا تم إخفاء جزء من النص */
-      display: inline-block; /* للسماح بتطبيق white-space: nowrap بشكل صحيح */
-      max-width: 100%; /* لضمان عدم تجاوز العنصر عرض الحاوية */
-    }
-
-    /* الأقسام العامة */
-    section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
-      text-align: center; /* توسيط العنوان */
-    }
-
-    h2 {
-      color: #9d704c;
-      margin-bottom: 20px;
-      font-size: 2rem;
-      text-align: center; /* توسيط العنوان */
-    }
-
-    p {
-      color: #fff;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    /* قسم الخدمات - تخطيط شبكي (Grid) */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 أعمدة أو أكثر تلقائيًا */
-      gap: 30px; /* مسافة بين العناصر */
-      justify-items: center; /* توسيط العناصر في الشبكة */
-    }
-
-    .service-item {
-      border: 2px solid #9d704c; /* إطار بنفس اللون المطلوب */
-      border-radius: 15px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      background: #fff; /* خلفية بيضاء للعنصر بالكامل */
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      padding: 0; /* إزالة البادينغ الداخلي للحافة */
-      width: 100%; /* اجعل العرض يملأ الخلية المتاحة */
-      max-width: 320px; /* تحديد أقصى عرض للعنصر */
-      height: 480px; /* ارتفاع ثابت للعنصر لاستيعاب الصورة الطولية */
-    }
-
-    .service-item:hover {
-      transform: scale(1.05); /* تأثير السكيل عند الهوفر */
-      border-color: #b3825e; /* تغيير لون الإطار عند الهوفر */
-      box-shadow: 0 8px 25px rgba(157, 112, 76, 0.3);
-      z-index: 10;
-    }
-
-    .service-item img {
-      width: 100%;
-      height: 100%; /* اجعل الصورة تملأ ارتفاع العنصر بالكامل */
-      display: block;
-      object-fit: cover; /* لملء المساحة مع الحفاظ على نسبة العرض والارتفاع (قد يقص أجزاء من الصورة) */
-      border-radius: 13px; /* أصغر قليلاً من العنصر الأب للسماح بظهور الإطار */
-    }
-    
-    .service-item h3 {
-        display: none; /* إخفاء العنوان بالكامل */
-    }
-
-
-    /* قسم التواصل */
-    .contact {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background-color: #9d704c;
-      color: #212222;
-      padding: 12px 20px;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-      justify-content: center;
-    }
-
-    .contact a:hover {
-      background-color: #b3825e;
-    }
-
-    /* تحسينات الجوال - الشاشات المتوسطة (Tablet / Larger Phones) */
+    /* Media Queries للجوال */
     @media (max-width: 768px) {
-      /* الفيديو */
+      /* تحسينات الفيديو للجوال */
       .video-section {
-        height: 50vh !important;
+        height: 50vh; /* ارتفاع أقل على الجوال */
       }
       
-      .video-section iframe {
-        width: 100% !important;
-        height: 100% !important;
-        min-height: auto !important;
-        min-width: auto !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
-      }
-
-      /* الشعار */
-      .logo {
-        top: 15px;
-        right: 15px;
-        padding: 3px;
-      }
-      
-      .logo img {
-        height: 40px;
-      }
-
-      /* أيقونة الواتساب */
-      .whatsapp-float {
-        bottom: 15px;
-        right: 15px;
-        width: 55px;
-        height: 55px;
-      }
-      
-      .whatsapp-float svg {
-        width: 30px;
-        height: 30px;
-      }
-
-      /* العداد */
+      /* تحسينات العداد للجوال */
       .counter-section {
-        padding: 40px 15px;
+        padding: 30px 15px;
       }
       
-      .counter-text-wrapper {
-        font-size: 1.5rem; /* حجم الخط أصغر للجوالات */
-        white-space: normal; /* السماح بالنص بالانتقال لسطر جديد عند الحاجة */
+      .counter-number {
+        font-size: 2.2rem;
+        margin-bottom: 8px;
       }
       
-
-      /* الأقسام العامة */
+      .counter-text {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+      
+      .counter-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      /* تحسينات الخدمات للجوال */
+      .services {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
       section {
         padding: 40px 15px;
       }
@@ -287,65 +249,59 @@
       }
       
       p {
-        font-size: 1.1rem;
-      }
-
-      /* الخدمات للجوال - عمودين */
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr); /* عمودين فقط على الشاشات المتوسطة */
-        gap: 20px;
-        justify-items: center; /* توسيط العناصر */
+        font-size: 1rem;
       }
       
-      .service-item {
-        max-width: none; /* إزالة الحد الأقصى للعرض للسماح لها بملء العمود */
-        padding: 0;
-        height: 350px; /* تقليل ارتفاع العنصر بالكامل لتقليل القص */
-        /* لضمان أن كل عنصر يأخذ نصف العرض المتاح مع الفجوة */
-        width: auto; 
-      }
-      
-      .service-item img {
-        height: 100%;
-      }
-    }
-
-    /* تحسينات الجوال - الشاشات الصغيرة (Mobile Phones) */
-    @media (max-width: 480px) {
-      /* الفيديو */
-      .video-section {
-        height: 40vh !important;
-      }
-
-      /* الشعار */
+      /* تحسينات الشعار للجوال */
       .logo {
         top: 10px;
         right: 10px;
+        padding: 3px;
       }
       
       .logo img {
-        height: 35px;
+        height: 35px !important;
       }
-
-      /* أيقونة الواتساب */
+      
+      /* تحسينات الواتساب للجوال */
       .whatsapp-float {
-        bottom: 10px;
-        right: 10px;
-        width: 50px;
-        height: 50px;
+        bottom: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
       }
       
       .whatsapp-float svg {
-        width: 28px;
-        height: 28px;
+        width: 25px;
+        height: 25px;
       }
+    }
 
-      /* العداد */
-      .counter-text-wrapper {
-        font-size: 1.2rem; /* حجم الخط أصغر للجوالات الصغيرة */
+    @media (max-width: 480px) {
+      /* تحسينات الفيديو للشاشات الصغيرة */
+      .video-section {
+        height: 40vh;
       }
-
-      /* الأقسام العامة */
+      
+      /* تحسينات العداد للشاشات الصغيرة */
+      .counter-number {
+        font-size: 1.8rem;
+      }
+      
+      .counter-text {
+        font-size: 1rem;
+      }
+      
+      .counter-subtitle {
+        font-size: 0.85rem;
+      }
+      
+      /* تحسينات الخدمات للشاشات الصغيرة */
+      .services {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
       section {
         padding: 30px 10px;
       }
@@ -353,112 +309,103 @@
       h2 {
         font-size: 1.5rem;
       }
-
-      /* الخدمات للشاشات الصغيرة - عمود واحد */
-      .services-grid {
-        grid-template-columns: 1fr; /* عمود واحد للشاشات الصغيرة جداً */
-        gap: 15px;
-      }
       
-      .service-item {
-        padding: 0;
-        height: 320px; /* تقليل ارتفاع العنصر بالكامل لتقليل القص */
-        max-width: 280px; /* تحديد أقصى عرض للعنصر في عرض العمود الواحد */
-        margin: 0 auto; /* توسيط العنصر في العمود الواحد */
-      }
-
-      .service-item img {
-        height: 100%;
-      }
-
-      /* التواصل */
       .contact a {
         padding: 10px 15px;
         font-size: 0.9rem;
       }
+      
+      /* تحسينات الشعار للشاشات الصغيرة */
+      .logo {
+        top: 8px;
+        right: 8px;
+      }
+      
+      .logo img {
+        height: 30px !important;
+      }
+      
+      /* تحسينات الواتساب للشاشات الصغيرة */
+      .whatsapp-float {
+        bottom: 12px;
+        left: 12px;
+        width: 42px;
+        height: 42px;
+      }
+      
+      .whatsapp-float svg {
+        width: 23px;
+        height: 23px;
+      }
+    }
+
+    /* تحسينات للكمبيوتر */
+    @media (min-width: 992px) {
+      .services {
+        grid-template-columns: repeat(3, 1fr);
+      }
+  
+      .contact {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      .counter-number {
+        font-size: 4rem;
+      }
+      
+      .counter-text {
+        font-size: 1.5rem;
+      }
+      
+      .counter-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        left: auto;
+        width: 60px;
+        height: 60px;
+      }
+      
+      .whatsapp-float svg {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .logo {
+        top: 20px;
+        right: 20px;
+        padding: 5px;
+      }
+      
+      .logo img {
+        height: 50px !important;
+      }
     }
 </style>
-</head>
-<body>
-
-<a href="https://wa.me/+966544878486" class="logo" target="_blank">
-  <img src="https://imgur.com/1ouk9Wr.png" alt="بدوي للتصميم"/>
-</a>
-
-<section class="video-section">
-    <iframe src="https://streamable.com/e/f3tuaq?autoplay=1&loop=1&muted=1" 
-            frameborder="0" width="100%" height="100%" 
-            allow="autoplay; fullscreen" allowfullscreen>
-    </iframe>
-</section>
-
-<section class="counter-section">
-  <div class="counter-container">
-    <div class="counter-text-wrapper">
-      <span id="clientCounter">0</span> عميل على مدار 6 سنوات من العمل الحر
-    </div>
-  </div>
-</section>
-
-<section>
-<h2>الخدمات</h2>
-<div class="services-grid">
-    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/jfjc/" target="_blank">
-      <img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
-    </a>
-    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/owtk/" target="_blank">
-      <img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
-    </a>
-    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/ztab/" target="_blank">
-      <img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
-    </a>
-    <a class="service-item" href="https://wa.me/+966544878486" target="_blank">
-      <img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
-    </a>
-    <a class="service-item" href="https://online.fliphtml5.com/uhmfw/mofi/" target="_blank">
-      <img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
-    </a>
-    <a class="service-item" href="https://wa.me/+966544878486" target="_blank">
-      <img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
-    </a>
-</div>
-</section>
-
-<section>
-<h2>وسائل التواصل</h2>
-<div class="contact">
-<a href="tel:+966544878486" target="_blank">📱 الجوال: 0544878486</a>
-<a href="https://wa.me/+966544878486" target="_blank">💬 واتساب: 0544878486</a>
-<a href="mailto:abadawy570@gmail.com" target="_blank">📧 الإيميل: abadawy570@gmail.com</a>
-</div>
-</section>
-
-<a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
-  <svg viewBox="0 0 24 24">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
-  </svg>
-</a>
-
 <script>
+// JavaScript لضمان التشغيل التلقائي والتكرار
 document.addEventListener('DOMContentLoaded', function() {
-    // إعداد الفيديو
     const iframe = document.querySelector('.video-section iframe');
+    
+    // إضافة معاملات التشغيل التلقائي والتكرار
     if (iframe) {
         const currentSrc = iframe.src;
-        // التأكد من وجود بارامترات autoplay, loop, muted
-        let newSrc = currentSrc;
-        if (!newSrc.includes('autoplay')) newSrc += (newSrc.includes('?') ? '&' : '?') + 'autoplay=1';
-        if (!newSrc.includes('loop')) newSrc += '&loop=1';
-        if (!newSrc.includes('muted')) newSrc += '&muted=1';
-        iframe.src = newSrc;
-
-        // Fallback to reload if iframe content is empty after some time
-        setTimeout(function() {
-            if (iframe && iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.innerHTML === '') {
-                iframe.src = iframe.src; // Reload if empty
-            }
-        }, 3000);
+        if (!currentSrc.includes('autoplay')) {
+            iframe.src = currentSrc + '?autoplay=1&loop=1&muted=1';
+        }
     }
+    
+    // محاولة إعادة تحميل iframe في حالة عدم التحميل
+    setTimeout(function() {
+        if (iframe && iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
+            iframe.src = iframe.src;
+        }
+    }, 3000);
     
     // عداد العملاء
     function animateCounter() {
@@ -467,25 +414,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let count = 0;
         const target = 500;
-        const increment = target / 100; // لزيادة سلسة خلال 100 خطوة
+        const increment = target / 100; // سرعة العداد
         
         const timer = setInterval(() => {
             count += increment;
             if (count >= target) {
-                counter.textContent = target + '+'; // إضافة علامة + عند الوصول للعدد المستهدف
+                counter.textContent = target + '+';
                 clearInterval(timer);
             } else {
-                counter.textContent = Math.floor(count); // عرض عدد صحيح
+                counter.textContent = Math.floor(count);
             }
-        }, 30); // تحديث كل 30 ملي ثانية
+        }, 30);
     }
     
-    // تشغيل العداد عند ظهور القسم على الشاشة
+    // تشغيل العداد عند ظهور القسم
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateCounter();
-                observer.unobserve(entry.target); // إيقاف المراقبة بعد التشغيل لمرة واحدة
+                observer.unobserve(entry.target);
             }
         });
     });
@@ -495,6 +442,70 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(counterSection);
     }
 });
-</script>
+</script></head>
+<body>
+<!-- الشعار -->
+<a href="https://imgur.com/1ouk9Wr" class="logo">
+<img alt="Logo" src="https://imgur.com/1ouk9Wr.png"/>
+</a>
+
+<!-- البانر -->
+<section class="video-section">
+    <iframe src="https://streamable.com/e/f3tuaq" 
+            frameborder="0" width="100%" height="100%" 
+            allow="autoplay; fullscreen" allowfullscreen>
+    </iframe>
+</section>
+
+<!-- قسم العداد -->
+<section class="counter-section">
+  <div class="counter-container">
+    <div class="counter-number" id="clientCounter">0</div>
+    <div class="counter-text">عميل</div>
+    <div class="counter-subtitle">على مدار 6 سنوات من العمل الحر</div>
+  </div>
+</section>
+
+<!-- الخدمات -->
+<section>
+<h2>الخدمات</h2>
+<div class="services">
+<a class="service" href="https://wa.me/+966544878486">
+<img alt="تصميم موقع إلكتروني" src="https://imgur.com/RAQXkHq.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/jfjc/">
+<img alt="تصميم بروفايل" src="https://imgur.com/yPk8zk3.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/owtk/">
+<img alt="تصميم منيو مطاعم" src="https://imgur.com/RAQXkHq.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/ztab/">
+<img alt="تصاميم سوشيال ميديا" src="https://imgur.com/0CzrmTv.png"/>
+</a>
+<a class="service" href="https://wa.me/+966544878486">
+<img alt="حملات إعلانية" src="https://imgur.com/ucZumCJ.png"/>
+</a>
+<a class="service" href="https://online.fliphtml5.com/uhmfw/mofi/">
+<img alt="تصاميم كتالوج" src="https://imgur.com/iRlryCk.png"/>
+</a>
+</div>
+</section>
+
+<!-- وسائل التواصل -->
+<section>
+<h2>وسائل التواصل</h2>
+<div class="contact">
+<a href="tel:+966544878486">📱 الجوال: 0544878486</a>
+<a href="https://wa.me/+966544878486">💬 واتساب: 0544878486</a>
+<a href="mailto:abadawy570@gmail.com">📧 الإيميل: abadawy570@gmail.com</a>
+</div>
+</section>
+
+<!-- أيقونة الواتساب العائمة -->
+<a href="https://wa.me/+966544878486" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+  </svg>
+</a>
 </body>
 </html>
