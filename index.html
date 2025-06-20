@@ -1,24 +1,62 @@
-<!-- بداية الملف -->
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>بدوي للتصميم</title>
-  <!-- باقي الستايلات زي ما هي ... -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+    body { background-color: #212222; color: #fff; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    header { width: 100vw; height: 60vh; background: url('https://i.imgur.com/AN3hs7X.jpg') no-repeat center center/cover; position: relative; }
+    header::after { content: ""; background-color: rgba(0, 0, 0, 0.4); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+    h2 { color: #9d704c; margin-bottom: 20px; font-size: 2rem; }
+    p { color: #fff; font-size: 1.1rem; margin-bottom: 20px; }
+    .services { display: grid; gap: 30px; }
+    .service { border: 2px solid white; border-radius: 15px; overflow: hidden; transition: transform 0.3s; }
+    .service:hover { transform: scale(1.02); }
+    .service img { width: 100%; height: auto; display: block; }
+    .contact { display: flex; flex-direction: column; gap: 15px; }
+    .contact a { display: flex; align-items: center; gap: 10px; background-color: #9d704c; color: #212222; padding: 12px 20px; border-radius: 10px; transition: background-color 0.3s; }
+    .contact a:hover { background-color: #b3825e; }
+    .video-section { width: 100vw; height: 100vh; overflow: hidden; position: relative; background: #000; }
+    .video-section iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .counter-section { padding: 40px 20px; text-align: center; background: linear-gradient(135deg, #212222 0%, #2a2b2b 100%); }
+    .counter-container { max-width: 600px; margin: 0 auto; }
+    .counter-number { font-size: 3rem; font-weight: bold; color: #9d704c; margin-bottom: 10px; font-family: 'Arial', sans-serif; }
+    .counter-text { font-size: 1.3rem; color: #fff; margin-bottom: 15px; }
+    .counter-subtitle { font-size: 1rem; color: #ccc; font-style: italic; line-height: 1.4; }
+    .whatsapp-float { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease; animation: pulse 2s infinite; }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+    .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+    .logo { position: fixed !important; top: 15px; right: 15px; z-index: 9999 !important; background: rgba(0,0,0,0.5); border-radius: 10px; padding: 5px; }
+    .logo img { height: 40px !important; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+    @media (max-width: 768px) {
+      .video-section { height: 50vh; }
+      .services { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      section { padding: 40px 15px; }
+      h2 { font-size: 1.8rem; margin-bottom: 15px; }
+      p { font-size: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .video-section { height: 40vh; }
+      .services { grid-template-columns: 1fr; gap: 15px; }
+      section { padding: 30px 10px; }
+    }
+    @media (min-width: 992px) {
+      .services { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
 </head>
 <body>
-  <!-- الشعار -->
   <a class="logo" href="https://imgur.com/1ouk9Wr">
     <img alt="Logo" src="https://imgur.com/1ouk9Wr.png"/>
   </a>
-
-  <!-- البانر -->
   <section class="video-section">
     <iframe allow="autoplay; fullscreen" allowfullscreen frameborder="0" src="https://streamable.com/e/f3tuaq"></iframe>
   </section>
-
-  <!-- قسم العداد -->
   <section class="counter-section">
     <div class="counter-container">
       <div class="counter-number" id="clientCounter">0</div>
@@ -26,8 +64,6 @@
       <div class="counter-subtitle">على مدار 6 سنوات من العمل الحر</div>
     </div>
   </section>
-
-  <!-- الخدمات -->
   <section>
     <h2>الخدمات</h2>
     <div class="services">
@@ -51,8 +87,6 @@
       </a>
     </div>
   </section>
-
-  <!-- وسائل التواصل -->
   <section>
     <h2>وسائل التواصل</h2>
     <div class="contact">
@@ -61,15 +95,11 @@
       <a href="mailto:abadawy570@gmail.com">📧 الإيميل: abadawy570@gmail.com</a>
     </div>
   </section>
-
-  <!-- أيقونة الواتساب العائمة -->
   <a class="whatsapp-float" href="https://wa.me/+966544878486" target="_blank">
     <svg viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."></path>
     </svg>
   </a>
-
-  <!-- سكربتات -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const iframe = document.querySelector('.video-section iframe');
